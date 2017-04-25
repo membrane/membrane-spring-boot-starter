@@ -2,6 +2,7 @@ package com.github.helpermethod.membrane.starter;
 
 import com.github.helpermethod.membrane.starter.controller.MembraneController;
 import com.github.helpermethod.membrane.starter.servlet.ServletTransport;
+import com.github.helpermethod.membrane.starter.specification.ProxiesSpecification;
 import com.predic8.membrane.core.HttpRouter;
 import com.predic8.membrane.core.Router;
 import com.predic8.membrane.core.interceptor.DispatchingInterceptor;
@@ -14,6 +15,7 @@ import com.predic8.membrane.core.transport.Transport;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -24,17 +26,17 @@ import java.util.List;
 public class MembraneConfiguration {
     @Bean
     public Transport transport() {
-        ServletTransport servletTransport = new ServletTransport();
+        Transport transport = new ServletTransport();
 
         Collections.addAll(
-            servletTransport.getInterceptors(),
+            transport.getInterceptors(),
             new ReverseProxyingInterceptor(),
             new RuleMatchingInterceptor(),
             new DispatchingInterceptor(),
             new UserFeatureInterceptor(),
             new HTTPClientInterceptor());
 
-        return servletTransport;
+        return transport;
     }
 
     @ConditionalOnMissingBean(ProxiesConfiguration.class)
@@ -46,22 +48,24 @@ public class MembraneConfiguration {
 
     @Bean
     public Router router(Transport transport, ProxiesConfiguration proxiesConfiguration) throws IOException {
+        Router router = new Router();
+        router.setTransport(transport);
+
         List<ServiceProxy> serviceProxies = new ArrayList<>();
         proxiesConfiguration.consume(new ProxiesSpecification(serviceProxies));
-
-        HttpRouter httpRouter = new HttpRouter();
-        httpRouter.setTransport(transport);
+        serviceProxies.get(0).setPort(8080);
 
         for (ServiceProxy serviceProxy : serviceProxies) {
-            httpRouter.add(serviceProxy);
+            router.add(serviceProxy);
         }
 
-        httpRouter.setHotDeploy(false);
-        httpRouter.start();
+        router.setHotDeploy(false);
+        router.start();
 
-        return httpRouter;
+        return router;
     }
 
+    @DependsOn("router")
     @Bean
     public MembraneController membraneController() {
         return new MembraneController();

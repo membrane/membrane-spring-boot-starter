@@ -1,6 +1,5 @@
-package com.github.helpermethod.membrane.starter;
+package com.github.helpermethod.membrane.starter.specification;
 
-import com.github.helpermethod.membrane.starter.specification.ServiceProxySpecification;
 import com.predic8.membrane.core.rules.ServiceProxy;
 
 import java.util.List;

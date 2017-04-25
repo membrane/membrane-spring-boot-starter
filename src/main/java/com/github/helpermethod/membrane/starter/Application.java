@@ -12,7 +12,7 @@ public class Application {
         return p -> p.serviceProxy(s ->
             s.matches(m ->
                 m.path("/api")
-                 .method("POST"))
+                 .method("GET"))
              .interceptors(i ->
                  i.log())
              .target(t ->
