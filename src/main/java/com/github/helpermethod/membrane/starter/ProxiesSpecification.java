@@ -6,14 +6,14 @@ import com.predic8.membrane.core.rules.ServiceProxy;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class Proxies {
+public class ProxiesSpecification {
     private final List<ServiceProxy> serviceProxies;
 
-    public Proxies(List<ServiceProxy> serviceProxies) {
+    public ProxiesSpecification(List<ServiceProxy> serviceProxies) {
         this.serviceProxies = serviceProxies;
     }
 
-    public Proxies serviceProxy(Consumer<ServiceProxySpecification> c) {
+    public ProxiesSpecification serviceProxy(Consumer<ServiceProxySpecification> c) {
         ServiceProxy serviceProxy = new ServiceProxy();
         c.accept(new ServiceProxySpecification(serviceProxy));
 

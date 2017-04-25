@@ -11,13 +11,12 @@ public class Application {
     public ProxiesConfiguration proxies() {
         return p -> p.serviceProxy(s ->
             s.matches(m ->
-                 m.path("/api")
-                  .method("POST"))
+                m.path("/api")
+                 .method("POST"))
              .interceptors(i ->
                  i.log())
              .target(t ->
-                 t.host("locahost")
-                  .port()
+                 t.host("localhost")
              ));
     }
 
