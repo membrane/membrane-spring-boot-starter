@@ -3,7 +3,6 @@ package com.github.helpermethod.membrane.starter;
 import com.github.helpermethod.membrane.starter.controller.MembraneController;
 import com.github.helpermethod.membrane.starter.servlet.ServletTransport;
 import com.github.helpermethod.membrane.starter.specification.ProxiesSpecification;
-import com.predic8.membrane.core.HttpRouter;
 import com.predic8.membrane.core.Router;
 import com.predic8.membrane.core.interceptor.DispatchingInterceptor;
 import com.predic8.membrane.core.interceptor.HTTPClientInterceptor;
@@ -15,7 +14,6 @@ import com.predic8.membrane.core.transport.Transport;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.DependsOn;
 import org.springframework.web.servlet.handler.SimpleUrlHandlerMapping;
 
 import java.io.IOException;
@@ -24,7 +22,7 @@ import java.util.*;
 @Configuration
 public class MembraneConfiguration {
     @Bean
-    public Transport transport() {
+    public Transport transport() throws Exception {
         Transport transport = new ServletTransport();
 
         Collections.addAll(
@@ -64,17 +62,16 @@ public class MembraneConfiguration {
     }
 
     @Bean
-    public SimpleUrlHandlerMapping simpleUrlHandlerMapping() {
-        SimpleUrlHandlerMapping simpleUrlHandlerMapping = new SimpleUrlHandlerMapping();
+    public SimpleUrlHandlerMapping membraneHandlerMapping() {
+        SimpleUrlHandlerMapping membraneHandlerMapping = new SimpleUrlHandlerMapping();
 
-        Map<String, String> urlMap = new HashMap<>();
-        urlMap.put("/api", "membraneController");
-        simpleUrlHandlerMapping.setUrlMap(urlMap);
+        Map<String, Object> urlMap = new HashMap<>();
+        urlMap.put("/restnames", membraneController());
+        membraneHandlerMapping.setUrlMap(urlMap);
 
-        return simpleUrlHandlerMapping;
+        return membraneHandlerMapping;
     }
 
-    @DependsOn("router")
     @Bean
     public MembraneController membraneController() {
         return new MembraneController();
