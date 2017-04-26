@@ -16,11 +16,10 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
+import org.springframework.web.servlet.handler.SimpleUrlHandlerMapping;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Configuration
 public class MembraneConfiguration {
@@ -53,7 +52,6 @@ public class MembraneConfiguration {
 
         List<ServiceProxy> serviceProxies = new ArrayList<>();
         proxiesConfiguration.consume(new ProxiesSpecification(serviceProxies));
-        serviceProxies.get(0).setPort(8080);
 
         for (ServiceProxy serviceProxy : serviceProxies) {
             router.add(serviceProxy);
@@ -63,6 +61,17 @@ public class MembraneConfiguration {
         router.start();
 
         return router;
+    }
+
+    @Bean
+    public SimpleUrlHandlerMapping simpleUrlHandlerMapping() {
+        SimpleUrlHandlerMapping simpleUrlHandlerMapping = new SimpleUrlHandlerMapping();
+
+        Map<String, String> urlMap = new HashMap<>();
+        urlMap.put("/api", "membraneController");
+        simpleUrlHandlerMapping.setUrlMap(urlMap);
+
+        return simpleUrlHandlerMapping;
     }
 
     @DependsOn("router")
