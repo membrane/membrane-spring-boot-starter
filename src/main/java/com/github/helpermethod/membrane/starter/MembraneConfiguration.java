@@ -23,6 +23,7 @@ import java.util.*;
 
 @Configuration
 public class MembraneConfiguration {
+    @ConditionalOnMissingBean(Transport.class)
     @Bean
     public Transport transport() {
         Transport transport = new ServletTransport();
@@ -64,17 +65,17 @@ public class MembraneConfiguration {
     }
 
     @Bean
-    public SimpleUrlHandlerMapping simpleUrlHandlerMapping() {
+    public SimpleUrlHandlerMapping simpleUrlHandlerMapping(Router router) {
         SimpleUrlHandlerMapping simpleUrlHandlerMapping = new SimpleUrlHandlerMapping();
+        simpleUrlHandlerMapping.setOrder(-200);
 
-        Map<String, String> urlMap = new HashMap<>();
-        urlMap.put("/api", "membraneController");
+        Map<String, Object> urlMap = new HashMap<>();
+        router.getRuleManager().getRules().stream().map(r -> r.getKey().getPath()).forEach(p -> urlMap.put(p, membraneController()));
         simpleUrlHandlerMapping.setUrlMap(urlMap);
 
         return simpleUrlHandlerMapping;
     }
 
-    @DependsOn("router")
     @Bean
     public MembraneController membraneController() {
         return new MembraneController();

@@ -3,6 +3,7 @@ package com.github.helpermethod.membrane.starter.servlet;
 import com.predic8.membrane.core.Router;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -18,7 +19,7 @@ public class MembraneServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
+        SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this, this.getServletContext());
     }
 
     @Override
