@@ -1,19 +1,18 @@
-package com.github.helpermethod.membrane.starter.controller;
+package com.github.helpermethod.membrane.starter.handler;
 
+import com.github.helpermethod.membrane.starter.controller.MembraneController;
 import org.springframework.web.servlet.handler.AbstractUrlHandlerMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-public class MembraneHandlerMapping extends AbstractUrlHandlerMapping {
+public class PrefixHandlerMapping extends AbstractUrlHandlerMapping {
     private final List<String> prefixPaths;
-    private final List<String> regexPaths;
     private final MembraneController membraneController;
     private volatile boolean dirty = true;
 
-    public MembraneHandlerMapping(List<String> prefixPaths, List<String> regexPaths, MembraneController membraneController) {
+    public PrefixHandlerMapping(List<String> prefixPaths, MembraneController membraneController) {
         this.prefixPaths = prefixPaths;
-        this.regexPaths = regexPaths;
         this.membraneController = membraneController;
     }
 
