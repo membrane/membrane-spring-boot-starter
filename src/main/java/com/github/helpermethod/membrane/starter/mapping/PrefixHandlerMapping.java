@@ -1,4 +1,4 @@
-package com.github.helpermethod.membrane.starter.handler;
+package com.github.helpermethod.membrane.starter.mapping;
 
 import com.github.helpermethod.membrane.starter.controller.MembraneController;
 import org.springframework.web.servlet.handler.AbstractUrlHandlerMapping;
@@ -6,13 +6,13 @@ import org.springframework.web.servlet.handler.AbstractUrlHandlerMapping;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-public class RegexHandlerMapping extends AbstractUrlHandlerMapping {
-    private final List<String> regexPaths;
+public class PrefixHandlerMapping extends AbstractUrlHandlerMapping {
+    private final List<String> prefixPaths;
     private final MembraneController membraneController;
     private volatile boolean dirty = true;
 
-    public RegexHandlerMapping(List<String> regexPaths, MembraneController membraneController) {
-        this.regexPaths = regexPaths;
+    public PrefixHandlerMapping(List<String> prefixPaths, MembraneController membraneController) {
+        this.prefixPaths = prefixPaths;
         this.membraneController = membraneController;
     }
 
@@ -21,13 +21,13 @@ public class RegexHandlerMapping extends AbstractUrlHandlerMapping {
         if (dirty) {
             synchronized (this) {
                 if (dirty) {
-                    regexPaths.forEach(p -> registerHandler(p, membraneController));
+                    prefixPaths.forEach(p -> registerHandler(p, membraneController));
                     dirty = false;
                 }
             }
         }
 
-        if (regexPaths.stream().anyMatch(urlPath::matches)) {
+        if (prefixPaths.stream().anyMatch(urlPath::startsWith)) {
             return membraneController;
         }
 
