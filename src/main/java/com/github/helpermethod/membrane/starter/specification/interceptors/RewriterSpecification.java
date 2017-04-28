@@ -11,11 +11,13 @@ public class RewriterSpecification {
         this.mappings = mappings;
     }
 
-    public void map(String from, String to, String action) {
+    public RewriterSpecification map(String from, String to, String action) {
         mappings.add(new RewriteInterceptor.Mapping(from, to, action));
+
+        return this;
     }
 
-    public void map(String from, String to) {
-        map(from, to, null);
+    public RewriterSpecification map(String from, String to) {
+        return map(from, to, null);
     }
 }

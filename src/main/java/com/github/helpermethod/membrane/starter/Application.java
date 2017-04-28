@@ -11,7 +11,10 @@ public class Application {
     public ProxiesConfiguration proxies() {
         return proxies -> proxies
             .serviceProxy(proxy -> proxy
-                .matches(matcher -> matcher.path("/restnames"))
+                .matches(matcher -> matcher.pathRegex("/(rest)?names.*"))
+                .interceptors(i -> i
+                    .rewriter(r -> r.map("^/names/(.*)", "/restnames/name\\.groovy\\?name=$1"))
+                )
                 .target(target -> target.host("www.thomas-bayer.com")));
     }
 

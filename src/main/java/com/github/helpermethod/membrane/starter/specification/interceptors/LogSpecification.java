@@ -9,11 +9,15 @@ public class LogSpecification {
         this.log = log;
     }
 
-    public void level(LogInterceptor.Level level) {
+    public LogSpecification level(LogInterceptor.Level level) {
         log.setLevel(level);
+
+        return this;
     }
 
-    public void category(String category) {
+    public LogSpecification category(String category) {
         log.setCategory(category);
+
+        return this;
     }
 }
