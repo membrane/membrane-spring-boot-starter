@@ -10,6 +10,7 @@ import com.predic8.membrane.core.interceptor.HTTPClientInterceptor;
 import com.predic8.membrane.core.interceptor.RuleMatchingInterceptor;
 import com.predic8.membrane.core.interceptor.UserFeatureInterceptor;
 import com.predic8.membrane.core.interceptor.rewrite.ReverseProxyingInterceptor;
+import com.predic8.membrane.core.rules.Rule;
 import com.predic8.membrane.core.rules.RuleKey;
 import com.predic8.membrane.core.rules.ServiceProxy;
 import com.predic8.membrane.core.transport.Transport;
@@ -22,6 +23,8 @@ import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.partitioningBy;
 import static java.util.stream.Collectors.toList;
 
 @Configuration
@@ -70,10 +73,12 @@ public class MembraneConfiguration {
     @Bean
     public PathLocator pathLocator(Router router) {
         Map<Boolean, List<RuleKey>> ruleKeyByType = router.getRuleManager().getRules().stream()
-                                                          .map(r -> r.getKey())
-                                                          .collect(Collectors.groupingBy(RuleKey::isPathRegExp));
+                                                          .map(Rule::getKey)
+                                                          .collect(partitioningBy(RuleKey::isPathRegExp));
 
-        return new PathLocator(ruleKeyByType.get(false).stream().map(RuleKey::getPath).collect(toList()), ruleKeyByType.get(true).stream().map(RuleKey::getPath).collect(toList())
+        return new PathLocator(
+            ruleKeyByType.get(false).stream().map(RuleKey::getPath).collect(toList()),
+            ruleKeyByType.get(true).stream().map(RuleKey::getPath).collect(toList())
         );
     }
 

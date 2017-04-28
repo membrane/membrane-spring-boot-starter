@@ -11,7 +11,7 @@ public class Application {
     public ProxiesConfiguration proxies() {
         return proxies -> proxies
             .serviceProxy(proxy -> proxy
-                .matches(matcher -> matcher.path("/restnames/"))
+                .matches(matcher -> matcher.path("/restnames"))
                 .target(target -> target.host("www.thomas-bayer.com")));
     }
 

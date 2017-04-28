@@ -6,13 +6,13 @@ import org.springframework.web.servlet.handler.AbstractUrlHandlerMapping;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-public class PrefixHandlerMapping extends AbstractUrlHandlerMapping {
-    private final List<String> prefixPaths;
+public class RegexHandlerMapping extends AbstractUrlHandlerMapping {
+    private final List<String> regexPaths;
     private final MembraneController membraneController;
     private volatile boolean dirty = true;
 
-    public PrefixHandlerMapping(List<String> prefixPaths, MembraneController membraneController) {
-        this.prefixPaths = prefixPaths;
+    public RegexHandlerMapping(List<String> regexPaths, MembraneController membraneController) {
+        this.regexPaths = regexPaths;
         this.membraneController = membraneController;
     }
 
@@ -21,13 +21,13 @@ public class PrefixHandlerMapping extends AbstractUrlHandlerMapping {
         if (dirty) {
             synchronized (this) {
                 if (dirty) {
-                    prefixPaths.forEach(p -> registerHandler(p, membraneController));
+                    regexPaths.forEach(p -> registerHandler(p, membraneController));
                     dirty = false;
                 }
             }
         }
 
-        if (prefixPaths.stream().anyMatch(urlPath::startsWith)) {
+        if (regexPaths.stream().anyMatch(urlPath::matches)) {
             return membraneController;
         }
 
