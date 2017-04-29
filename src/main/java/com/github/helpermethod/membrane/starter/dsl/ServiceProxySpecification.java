@@ -1,5 +1,6 @@
 package com.github.helpermethod.membrane.starter.dsl;
 
+import com.predic8.membrane.core.exchange.Exchange;
 import com.predic8.membrane.core.rules.ServiceProxy;
 
 import java.util.function.Consumer;

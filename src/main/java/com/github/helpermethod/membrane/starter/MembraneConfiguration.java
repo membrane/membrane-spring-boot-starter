@@ -2,6 +2,7 @@ package com.github.helpermethod.membrane.starter;
 
 import com.github.helpermethod.membrane.starter.controller.MembraneController;
 import com.github.helpermethod.membrane.starter.mapping.PrefixHandlerMapping;
+import com.github.helpermethod.membrane.starter.mapping.RegexHandlerMapping;
 import com.github.helpermethod.membrane.starter.servlet.ServletTransport;
 import com.github.helpermethod.membrane.starter.dsl.ProxiesSpecification;
 import com.predic8.membrane.core.Router;
@@ -82,11 +83,19 @@ public class MembraneConfiguration {
     }
 
     @Bean
-    public AbstractUrlHandlerMapping membraneHandlerMapping(PathLocator pathLocator, MembraneController membraneController) {
-        AbstractUrlHandlerMapping membraneHandlerMapping = new PrefixHandlerMapping(pathLocator.prefixPaths(), membraneController);
-        membraneHandlerMapping.setOrder(-200);
+    public AbstractUrlHandlerMapping membranePrefixHandlerMapping(PathLocator pathLocator, MembraneController membraneController) {
+        AbstractUrlHandlerMapping prefixHandlerMapping = new PrefixHandlerMapping(pathLocator.prefixPaths(), membraneController);
+        prefixHandlerMapping.setOrder(-200);
 
-        return membraneHandlerMapping;
+        return prefixHandlerMapping;
+    }
+
+    @Bean
+    public AbstractUrlHandlerMapping membraneRegexHandlerMapping(PathLocator pathLocator, MembraneController membraneController) {
+        AbstractUrlHandlerMapping regexHandlerMapping = new RegexHandlerMapping(pathLocator.regexPaths(), membraneController);
+        regexHandlerMapping.setOrder(-200);
+
+        return regexHandlerMapping;
     }
 
     @Bean

@@ -23,7 +23,7 @@ public class MatcherSpecification {
     }
 
     public MatcherSpecification pathRegex(String pathRegex) {
-        serviceProxy.setPath(new Path(false, pathRegex));
+        serviceProxy.setPath(new Path(true, pathRegex));
 
         return this;
     }
