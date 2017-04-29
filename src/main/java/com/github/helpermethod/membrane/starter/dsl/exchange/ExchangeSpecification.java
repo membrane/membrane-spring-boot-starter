@@ -36,4 +36,9 @@ public class ExchangeSpecification {
     public Exchange raw() {
         return exchange;
     }
+
+    @Override
+    public String toString() {
+        return exchange.toString();
+    }
 }

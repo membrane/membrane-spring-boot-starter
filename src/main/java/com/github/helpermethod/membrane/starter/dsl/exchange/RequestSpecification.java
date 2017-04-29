@@ -5,7 +5,7 @@ import com.predic8.membrane.core.http.Request;
 public class RequestSpecification {
     private final Request request;
 
-    public RequestSpecification(Request request) {
+    RequestSpecification(Request request) {
         this.request = request;
     }
 
@@ -15,5 +15,9 @@ public class RequestSpecification {
 
     public Request raw() {
         return request;
+    }
+
+    public String toString() {
+        return request.toString();
     }
 }

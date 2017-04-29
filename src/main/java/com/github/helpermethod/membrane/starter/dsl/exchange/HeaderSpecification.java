@@ -5,11 +5,15 @@ import com.predic8.membrane.core.http.Header;
 public class HeaderSpecification {
     private final Header header;
 
-    public HeaderSpecification(Header header) {
+    HeaderSpecification(Header header) {
         this.header = header;
     }
 
     public Header raw() {
         return header;
+    }
+
+    public String toString() {
+        return header.toString();
     }
 }

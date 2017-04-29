@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import java.util.Arrays;
+import static java.lang.System.out;
 
 @EnableMembrane
 @SpringBootApplication
@@ -16,9 +16,7 @@ public class Application {
                 .matches(m -> m.pathRegex("/(rest)?names.*"))
                 .interceptors(i -> i
                     .rewriter(r -> r.map("^/names/(.*)", "/restnames/name\\.groovy\\?name=$1"))
-                    .exchange(exc ->
-                        System.out.println(Arrays.toString(exc.request().headers().raw().getAllHeaderFields()))
-                    )
+                    .exchange(exc -> out.println(exc.request().headers()))
                 )
                 .target(t -> t
                     .host("www.thomas-bayer.com")

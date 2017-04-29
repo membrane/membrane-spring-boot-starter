@@ -5,11 +5,15 @@ import com.predic8.membrane.core.http.Response;
 public class ResponseSpecification {
     private final Response reponse;
 
-    public ResponseSpecification(Response response) {
+    ResponseSpecification(Response response) {
         this.reponse = response;
     }
 
     public Response raw() {
         return reponse;
+    }
+
+    public String toString() {
+        return reponse.toString();
     }
 }
