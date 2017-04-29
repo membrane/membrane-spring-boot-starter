@@ -1,4 +1,4 @@
-package com.github.helpermethod.membrane.starter.specification;
+package com.github.helpermethod.membrane.starter.dsl;
 
 import com.predic8.membrane.core.rules.AbstractServiceProxy.Target;
 

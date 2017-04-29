@@ -1,7 +1,7 @@
-package com.github.helpermethod.membrane.starter.specification;
+package com.github.helpermethod.membrane.starter.dsl;
 
-import com.github.helpermethod.membrane.starter.specification.interceptors.LogSpecification;
-import com.github.helpermethod.membrane.starter.specification.interceptors.RewriterSpecification;
+import com.github.helpermethod.membrane.starter.dsl.interceptors.LogSpecification;
+import com.github.helpermethod.membrane.starter.dsl.interceptors.RewriterSpecification;
 import com.predic8.membrane.core.interceptor.Interceptor;
 import com.predic8.membrane.core.interceptor.LogInterceptor;
 import com.predic8.membrane.core.interceptor.rewrite.RewriteInterceptor;

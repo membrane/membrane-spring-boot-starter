@@ -1,4 +1,4 @@
-package com.github.helpermethod.membrane.starter.specification.interceptors;
+package com.github.helpermethod.membrane.starter.dsl.interceptors;
 
 import com.predic8.membrane.core.interceptor.rewrite.RewriteInterceptor;
 

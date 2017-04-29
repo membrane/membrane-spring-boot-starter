@@ -1,6 +1,6 @@
 package com.github.helpermethod.membrane.starter;
 
-import com.github.helpermethod.membrane.starter.specification.ProxiesSpecification;
+import com.github.helpermethod.membrane.starter.dsl.ProxiesSpecification;
 
 @FunctionalInterface
 public interface ProxiesConfiguration {
