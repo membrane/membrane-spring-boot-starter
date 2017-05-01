@@ -4,6 +4,7 @@ import com.github.helpermethod.membrane.starter.dsl.exchange.ExchangeSpecificati
 import com.github.helpermethod.membrane.starter.dsl.interceptors.LogSpecification;
 import com.github.helpermethod.membrane.starter.dsl.interceptors.RewriterSpecification;
 import com.github.helpermethod.membrane.starter.interceptor.ExchangeInterceptor;
+import com.predic8.membrane.core.exchange.Exchange;
 import com.predic8.membrane.core.interceptor.Interceptor;
 import com.predic8.membrane.core.interceptor.LogInterceptor;
 import com.predic8.membrane.core.interceptor.Outcome;
@@ -43,7 +44,7 @@ public class InterceptorsSpecification {
         return this;
     }
 
-    public InterceptorsSpecification exchange(Function<ExchangeSpecification, Outcome> c) {
+    public InterceptorsSpecification exchange(Function<Exchange, Outcome> c) {
         ExchangeInterceptor exchangeInterceptor = new ExchangeInterceptor(c);
 
         interceptors.add(exchangeInterceptor);
