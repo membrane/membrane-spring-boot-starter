@@ -6,10 +6,12 @@ import com.github.helpermethod.membrane.starter.dsl.interceptors.RewriterSpecifi
 import com.github.helpermethod.membrane.starter.interceptor.ExchangeInterceptor;
 import com.predic8.membrane.core.interceptor.Interceptor;
 import com.predic8.membrane.core.interceptor.LogInterceptor;
+import com.predic8.membrane.core.interceptor.Outcome;
 import com.predic8.membrane.core.interceptor.rewrite.RewriteInterceptor;
 
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 public class InterceptorsSpecification {
     private final List<Interceptor> interceptors;
@@ -41,7 +43,7 @@ public class InterceptorsSpecification {
         return this;
     }
 
-    public InterceptorsSpecification exchange(Consumer<ExchangeSpecification> c) {
+    public InterceptorsSpecification exchange(Function<ExchangeSpecification, Outcome> c) {
         ExchangeInterceptor exchangeInterceptor = new ExchangeInterceptor(c);
 
         interceptors.add(exchangeInterceptor);
