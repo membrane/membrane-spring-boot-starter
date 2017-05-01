@@ -1,10 +1,10 @@
 package com.github.helpermethod.membrane.starter;
 
 import com.github.helpermethod.membrane.starter.controller.MembraneController;
+import com.github.helpermethod.membrane.starter.dsl.ProxiesSpecification;
 import com.github.helpermethod.membrane.starter.mapping.PrefixHandlerMapping;
 import com.github.helpermethod.membrane.starter.mapping.RegexHandlerMapping;
 import com.github.helpermethod.membrane.starter.servlet.ServletTransport;
-import com.github.helpermethod.membrane.starter.dsl.ProxiesSpecification;
 import com.predic8.membrane.core.Router;
 import com.predic8.membrane.core.interceptor.DispatchingInterceptor;
 import com.predic8.membrane.core.interceptor.HTTPClientInterceptor;
@@ -21,9 +21,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.handler.AbstractUrlHandlerMapping;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
-import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.partitioningBy;
 import static java.util.stream.Collectors.toList;
 

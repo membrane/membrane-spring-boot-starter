@@ -33,7 +33,7 @@ public class ExchangeSpecification {
         return this;
     }
 
-    public Exchange raw() {
+    public Exchange get() {
         return exchange;
     }
 

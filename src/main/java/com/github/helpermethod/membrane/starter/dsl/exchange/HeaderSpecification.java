@@ -9,7 +9,7 @@ public class HeaderSpecification {
         this.header = header;
     }
 
-    public Header raw() {
+    public Header get() {
         return header;
     }
 

@@ -13,7 +13,7 @@ public class RequestSpecification {
         return new HeaderSpecification(request.getHeader());
     }
 
-    public Request raw() {
+    public Request get() {
         return request;
     }
 

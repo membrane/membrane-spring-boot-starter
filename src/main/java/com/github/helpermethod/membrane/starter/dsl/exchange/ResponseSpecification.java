@@ -9,7 +9,7 @@ public class ResponseSpecification {
         this.reponse = response;
     }
 
-    public Response raw() {
+    public Response get() {
         return reponse;
     }
 
