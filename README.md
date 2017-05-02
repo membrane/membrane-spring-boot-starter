@@ -15,10 +15,10 @@ A Spring Boot Starter for Membrane Service Proxy.
 public class Application {
     @Bean
     public ProxiesConfiguration proxies() {
-        return p -> p
-            .serviceProxy(s -> s
-                .matches(m -> m.pathPrefix("/restnames/"))
-                .target(t -> t.host("www.thomas-bayer.com")));
+        return proxies -> proxies
+            .serviceProxy(serviceProxy -> serviceProxy
+                .matches(matcher -> matcher.pathPrefix("/restnames/"))
+                .target(target -> target.host("www.thomas-bayer.com")));
     }
 
     public static void main(String[] args) {
