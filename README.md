@@ -5,7 +5,7 @@ A Spring Boot Starter for Membrane Service Proxy.
 ## Features
 
 * seamless integration with Spring Boot
-* a typesafe Java 8 DSL for configuring Service Proxies
+* typesafe Java 8 DSL for configuring Service Proxies
 
 ## Example
 
