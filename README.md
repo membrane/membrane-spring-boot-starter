@@ -1,6 +1,6 @@
 # Membrane Spring Boot Starter
 
-A Spring Boot Starter for Membrane Service Proxy.
+A Spring Boot Starter for [Membrane Service Proxy](https://github.com/membrane/service-proxy).
 
 ## Features
 
