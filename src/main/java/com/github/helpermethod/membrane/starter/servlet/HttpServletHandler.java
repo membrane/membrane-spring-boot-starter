@@ -8,6 +8,8 @@ import com.predic8.membrane.core.transport.http.AbstractHttpHandler;
 import com.predic8.membrane.core.transport.http.EOFWhileReadingFirstLineException;
 import com.predic8.membrane.core.util.DNSCache;
 import com.predic8.membrane.core.util.EndOfStreamException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -17,12 +19,15 @@ import java.net.InetAddress;
 import java.util.Enumeration;
 
 class HttpServletHandler extends AbstractHttpHandler {
+    private static final Logger log = LoggerFactory.getLogger(HttpServletHandler.class);
+
     private final HttpServletRequest request;
     private final HttpServletResponse response;
     private final InetAddress remoteAddr, localAddr;
 
     public HttpServletHandler(HttpServletRequest request, HttpServletResponse response,
                               Transport transport) throws IOException {
+
         super(transport);
         this.request = request;
         this.response = response;
@@ -59,12 +64,14 @@ class HttpServletHandler extends AbstractHttpHandler {
             writeResponse(exchange.getResponse());
             exchange.setCompleted();
         } catch (EndOfStreamException e) {
+            log.debug("stream closed");
         } catch (EOFWhileReadingFirstLineException e) {
+            log.debug("Client connection terminated before line was read. Line so far: (" + e.getLineSoFar() + ")");
         } catch (Exception e) {
+            log.error(e.getMessage(), e);
         } finally {
             exchange.detach();
         }
-
     }
 
     @SuppressWarnings("deprecation")
@@ -112,10 +119,10 @@ class HttpServletHandler extends AbstractHttpHandler {
         Header header = new Header();
         Enumeration<?> e = request.getHeaderNames();
         while (e.hasMoreElements()) {
-            String key = (String)e.nextElement();
+            String key = (String) e.nextElement();
             Enumeration<?> e2 = request.getHeaders(key);
             while (e2.hasMoreElements()) {
-                String value = (String)e2.nextElement();
+                String value = (String) e2.nextElement();
                 header.add(key, value);
             }
         }
@@ -141,7 +148,7 @@ class HttpServletHandler extends AbstractHttpHandler {
 
     @Override
     public ServletTransport getTransport() {
-        return (ServletTransport)super.getTransport();
+        return (ServletTransport) super.getTransport();
     }
 
     @Override
@@ -151,7 +158,7 @@ class HttpServletHandler extends AbstractHttpHandler {
 
     @Override
     public String getContextPath(Exchange exc) {
-        return ((HttpServletRequest)exc.getProperty(Exchange.HTTP_SERVLET_REQUEST)).getContextPath();
+        return ((HttpServletRequest) exc.getProperty(Exchange.HTTP_SERVLET_REQUEST)).getContextPath();
     }
 
 }

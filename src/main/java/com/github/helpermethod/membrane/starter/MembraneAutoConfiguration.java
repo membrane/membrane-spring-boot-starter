@@ -2,8 +2,7 @@ package com.github.helpermethod.membrane.starter;
 
 import com.github.helpermethod.membrane.starter.controller.MembraneController;
 import com.github.helpermethod.membrane.starter.dsl.ProxiesSpecification;
-import com.github.helpermethod.membrane.starter.mapping.PrefixHandlerMapping;
-import com.github.helpermethod.membrane.starter.mapping.RegexHandlerMapping;
+import com.github.helpermethod.membrane.starter.mapping.PathHandlerMapping;
 import com.github.helpermethod.membrane.starter.servlet.ServletTransport;
 import com.predic8.membrane.core.Router;
 import com.predic8.membrane.core.interceptor.DispatchingInterceptor;
@@ -15,7 +14,9 @@ import com.predic8.membrane.core.rules.Rule;
 import com.predic8.membrane.core.rules.RuleKey;
 import com.predic8.membrane.core.rules.ServiceProxy;
 import com.predic8.membrane.core.transport.Transport;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.web.ConditionalOnEnabledResourceChain;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.handler.AbstractUrlHandlerMapping;
@@ -30,7 +31,7 @@ import static java.util.stream.Collectors.partitioningBy;
 import static java.util.stream.Collectors.toList;
 
 @Configuration
-public class MembraneConfiguration {
+public class MembraneAutoConfiguration {
     @ConditionalOnMissingBean(Transport.class)
     @Bean
     public Transport transport() {
@@ -86,18 +87,18 @@ public class MembraneConfiguration {
 
     @Bean
     public AbstractUrlHandlerMapping membranePrefixHandlerMapping(PathLocator pathLocator, MembraneController membraneController) {
-        AbstractUrlHandlerMapping prefixHandlerMapping = new PrefixHandlerMapping(pathLocator.prefixPaths(), membraneController);
-        prefixHandlerMapping.setOrder(-200);
+        PathHandlerMapping membranePrefixHandlerMapping = new PathHandlerMapping(pathLocator.prefixPaths(), (url, path) -> url.startsWith(path), membraneController);
+        membranePrefixHandlerMapping.setOrder(-200);
 
-        return prefixHandlerMapping;
+        return membranePrefixHandlerMapping;
     }
 
     @Bean
     public AbstractUrlHandlerMapping membraneRegexHandlerMapping(PathLocator pathLocator, MembraneController membraneController) {
-        AbstractUrlHandlerMapping regexHandlerMapping = new RegexHandlerMapping(pathLocator.regexPaths(), membraneController);
-        regexHandlerMapping.setOrder(-200);
+        PathHandlerMapping membraneRegexHandlerMapping = new PathHandlerMapping(pathLocator.prefixPaths(), (url, path) -> url.matches(path), membraneController);
+        membraneRegexHandlerMapping.setOrder(-200);
 
-        return regexHandlerMapping;
+        return membraneRegexHandlerMapping;
     }
 
     @Bean

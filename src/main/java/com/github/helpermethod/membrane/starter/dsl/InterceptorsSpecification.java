@@ -1,6 +1,5 @@
 package com.github.helpermethod.membrane.starter.dsl;
 
-import com.github.helpermethod.membrane.starter.dsl.exchange.ExchangeSpecification;
 import com.github.helpermethod.membrane.starter.dsl.interceptors.LogSpecification;
 import com.github.helpermethod.membrane.starter.dsl.interceptors.RewriterSpecification;
 import com.github.helpermethod.membrane.starter.interceptor.ExchangeInterceptor;
@@ -48,6 +47,12 @@ public class InterceptorsSpecification {
         ExchangeInterceptor exchangeInterceptor = new ExchangeInterceptor(c);
 
         interceptors.add(exchangeInterceptor);
+
+        return this;
+    }
+
+    public InterceptorsSpecification interceptor(Interceptor interceptor) {
+        interceptors.add(interceptor);
 
         return this;
     }
