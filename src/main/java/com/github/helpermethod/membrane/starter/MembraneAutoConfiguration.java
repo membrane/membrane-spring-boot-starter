@@ -14,9 +14,8 @@ import com.predic8.membrane.core.rules.Rule;
 import com.predic8.membrane.core.rules.RuleKey;
 import com.predic8.membrane.core.rules.ServiceProxy;
 import com.predic8.membrane.core.transport.Transport;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-import org.springframework.boot.autoconfigure.web.ConditionalOnEnabledResourceChain;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.handler.AbstractUrlHandlerMapping;
@@ -48,8 +47,8 @@ public class MembraneAutoConfiguration {
         return transport;
     }
 
-    @ConditionalOnMissingBean(ProxiesConfiguration.class)
     @Bean
+    @ConditionalOnMissingBean(ProxiesConfiguration.class)
     public ProxiesConfiguration proxies() {
         return p -> {
         };
@@ -74,28 +73,28 @@ public class MembraneAutoConfiguration {
     }
 
     @Bean
-    public PathLocator pathLocator(Router router) {
+    public PathResolver pathLocator(Router router) {
         Map<Boolean, List<RuleKey>> ruleKeyByType = router.getRuleManager().getRules().stream()
                                                           .map(Rule::getKey)
                                                           .collect(partitioningBy(RuleKey::isPathRegExp));
 
-        return new PathLocator(
+        return new PathResolver(
             ruleKeyByType.get(false).stream().map(RuleKey::getPath).collect(toList()),
             ruleKeyByType.get(true).stream().map(RuleKey::getPath).collect(toList())
         );
     }
 
     @Bean
-    public AbstractUrlHandlerMapping membranePrefixHandlerMapping(PathLocator pathLocator, MembraneController membraneController) {
-        PathHandlerMapping membranePrefixHandlerMapping = new PathHandlerMapping(pathLocator.prefixPaths(), (url, path) -> url.startsWith(path), membraneController);
+    public AbstractUrlHandlerMapping membranePrefixHandlerMapping(PathResolver pathResolver, MembraneController membraneController) {
+        PathHandlerMapping membranePrefixHandlerMapping = new PathHandlerMapping(pathResolver.prefixPaths(), (url, path) -> url.startsWith(path), membraneController);
         membranePrefixHandlerMapping.setOrder(-200);
 
         return membranePrefixHandlerMapping;
     }
 
     @Bean
-    public AbstractUrlHandlerMapping membraneRegexHandlerMapping(PathLocator pathLocator, MembraneController membraneController) {
-        PathHandlerMapping membraneRegexHandlerMapping = new PathHandlerMapping(pathLocator.prefixPaths(), (url, path) -> url.matches(path), membraneController);
+    public AbstractUrlHandlerMapping membraneRegexHandlerMapping(PathResolver pathResolver, MembraneController membraneController) {
+        PathHandlerMapping membraneRegexHandlerMapping = new PathHandlerMapping(pathResolver.regexPaths(), (url, path) -> url.matches(path), membraneController);
         membraneRegexHandlerMapping.setOrder(-200);
 
         return membraneRegexHandlerMapping;
