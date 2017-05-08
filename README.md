@@ -1,5 +1,7 @@
 # Membrane Spring Boot Starter
 
+[![Hex.pm](https://img.shields.io/hexpm/l/plug.svg)](https://raw.githubusercontent.com/helpermethod/membrane-spring-boot-starter/master/LICENSE)
+
 A Spring Boot Starter for [Membrane Service Proxy](https://github.com/membrane/service-proxy).
 
 ## Features
