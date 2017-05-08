@@ -30,9 +30,10 @@ import static java.util.stream.Collectors.partitioningBy;
 import static java.util.stream.Collectors.toList;
 
 @Configuration
+@ConditionalOnBean(MembraneMarkerConfiguration.Marker.class)
 public class MembraneAutoConfiguration {
-    @ConditionalOnMissingBean(Transport.class)
     @Bean
+    @ConditionalOnMissingBean(Transport.class)
     public Transport transport() {
         Transport transport = new ServletTransport();
 
@@ -47,8 +48,8 @@ public class MembraneAutoConfiguration {
         return transport;
     }
 
-    @Bean
     @ConditionalOnMissingBean(ProxiesConfiguration.class)
+    @Bean
     public ProxiesConfiguration proxies() {
         return p -> {
         };

@@ -9,6 +9,6 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-@Import(MembraneAutoConfigurationImportSelector.class)
+@Import(MembraneMarkerConfiguration.class)
 public @interface EnableMembrane {
 }
