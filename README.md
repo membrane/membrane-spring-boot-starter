@@ -1,6 +1,6 @@
 # Membrane Spring Boot Starter
 
-[![Dependency Status](https://www.versioneye.com/user/projects/59109d639e070f003f7cb97c/badge.svg?style=flat)](https://www.versioneye.com/user/projects/59109d639e070f003f7cb97c)
+[![Dependency Status](https://www.versioneye.com/user/projects/59109d639e070f003f7cb97c/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/59109d639e070f003f7cb97c)
 [![Hex.pm](https://img.shields.io/hexpm/l/plug.svg)](https://raw.githubusercontent.com/helpermethod/membrane-spring-boot-starter/master/LICENSE)
 
 A Spring Boot Starter for [Membrane Service Proxy](https://github.com/membrane/service-proxy).
