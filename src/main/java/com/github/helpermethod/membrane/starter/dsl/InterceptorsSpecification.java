@@ -10,6 +10,7 @@ import com.predic8.membrane.core.interceptor.Outcome;
 import com.predic8.membrane.core.interceptor.rewrite.RewriteInterceptor;
 
 import java.util.List;
+import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
@@ -43,16 +44,20 @@ public class InterceptorsSpecification {
         return this;
     }
 
-    public InterceptorsSpecification exchange(Function<Exchange, Outcome> c) {
-        ExchangeInterceptor exchangeInterceptor = new ExchangeInterceptor(c);
-
-        interceptors.add(exchangeInterceptor);
+    public InterceptorsSpecification interceptor(Interceptor interceptor) {
+        interceptors.add(interceptor);
 
         return this;
     }
 
-    public InterceptorsSpecification interceptor(Interceptor interceptor) {
-        interceptors.add(interceptor);
+    public InterceptorsSpecification exchange(Function<Exchange, Outcome> c) {
+        return exchange((exchange, flow) -> c.apply(exchange));
+    }
+
+    public InterceptorsSpecification exchange(BiFunction<Exchange, FlowSpecification, Outcome> c) {
+        ExchangeInterceptor exchangeInterceptor = new ExchangeInterceptor(c);
+
+        interceptors.add(exchangeInterceptor);
 
         return this;
     }
