@@ -1,6 +1,6 @@
 # Membrane Spring Boot Starter
 
-[![CircleCI](https://circleci.com/gh/helpermethod/membrane-spring-boot-starter.svg)](https://circleci.com/gh/helpermethod/membrane-spring-boot-starter)
+[![CircleCI](https://circleci.com/gh/helpermethod/membrane-spring-boot-starter.svg?style=shield)](https://circleci.com/gh/helpermethod/membrane-spring-boot-starter)
 
 [![Hex.pm](https://img.shields.io/hexpm/l/plug.svg)](https://raw.githubusercontent.com/helpermethod/membrane-spring-boot-starter/master/LICENSE)
 
