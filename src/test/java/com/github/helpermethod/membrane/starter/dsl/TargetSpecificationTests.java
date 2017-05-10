@@ -8,12 +8,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class TargetSpecificationTests {
     private final Target target = new Target();
+    private final TargetSpecification targetSpecification = new TargetSpecification(target);
 
     @Test
     @DisplayName("Set the host")
     public void testSetHost() {
-        TargetSpecification targetSpecification = new TargetSpecification(target);
-
         targetSpecification.host("localhost");
 
         assertThat(target.getHost()).isEqualTo("localhost");
@@ -22,8 +21,6 @@ public class TargetSpecificationTests {
     @Test
     @DisplayName("Set the port")
     public void testSetPort() {
-        TargetSpecification targetSpecification = new TargetSpecification(target);
-
         targetSpecification.port(8080);
 
         assertThat(target.getPort()).isEqualTo(8080);
