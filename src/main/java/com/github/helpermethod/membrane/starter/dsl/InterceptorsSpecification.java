@@ -54,7 +54,7 @@ public class InterceptorsSpecification {
         return exchange((exchange, flow) -> c.apply(exchange));
     }
 
-    public InterceptorsSpecification exchange(BiFunction<Exchange, FlowSpecification, Outcome> c) {
+    public InterceptorsSpecification exchange(BiFunction<Exchange, Interceptor.Flow, Outcome> c) {
         ExchangeInterceptor exchangeInterceptor = new ExchangeInterceptor(c);
 
         interceptors.add(exchangeInterceptor);

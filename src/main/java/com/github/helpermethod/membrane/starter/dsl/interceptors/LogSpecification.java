@@ -1,6 +1,7 @@
 package com.github.helpermethod.membrane.starter.dsl.interceptors;
 
 import com.predic8.membrane.core.interceptor.LogInterceptor;
+import com.predic8.membrane.core.interceptor.LogInterceptor.Level;
 
 public class LogSpecification {
     private final LogInterceptor log;
@@ -9,7 +10,7 @@ public class LogSpecification {
         this.log = log;
     }
 
-    public LogSpecification level(LogInterceptor.Level level) {
+    public LogSpecification level(Level level) {
         log.setLevel(level);
 
         return this;
