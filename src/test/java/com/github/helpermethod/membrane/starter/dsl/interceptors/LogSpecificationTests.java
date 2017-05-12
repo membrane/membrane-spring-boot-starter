@@ -19,16 +19,16 @@ public class LogSpecificationTests {
         logSpecification = new LogSpecification(logInterceptor);
     }
 
-    @DisplayName("should set the log level on the log interceptor")
     @Test
+    @DisplayName("should set the log level on the log interceptor")
     public void testSetLevel() {
         logSpecification.level(WARN);
 
         assertThat(logInterceptor.getLevel()).isSameAs(WARN);
     }
 
-    @DisplayName("should set the category on the log interceptor")
     @Test
+    @DisplayName("should set the category on the log interceptor")
     public void testSetCategory() {
         logSpecification.category("logSpecification");
 

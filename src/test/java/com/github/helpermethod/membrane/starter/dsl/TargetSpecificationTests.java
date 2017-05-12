@@ -18,16 +18,16 @@ public class TargetSpecificationTests {
         targetSpecification = new TargetSpecification(target);
     }
 
-    @DisplayName("should set the host on the target")
     @Test
+    @DisplayName("should set the host on the target")
     public void testSetHost() {
         targetSpecification.host("localhost");
 
         assertThat(target.getHost()).isEqualTo("localhost");
     }
 
-    @DisplayName("should set the port on the target")
     @Test
+    @DisplayName("should set the port on the target")
     public void testSetPort() {
         targetSpecification.port(8080);
 
