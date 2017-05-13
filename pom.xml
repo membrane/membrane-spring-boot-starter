@@ -5,7 +5,7 @@
 
     <groupId>com.github.helpermethod</groupId>
     <artifactId>membrane-spring-boot-starter</artifactId>
-    <version>0.0.1</version>
+    <version>0.1.0</version>
     <packaging>jar</packaging>
 
     <parent>
