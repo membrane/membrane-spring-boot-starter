@@ -98,4 +98,11 @@
             </plugin>
         </plugins>
     </build>
+
+    <distributionManagement>
+        <repository>
+            <id>bintray-predic8-maven</id>
+            <url>https://bintray.com/predic8/maven/</url>
+        </repository>
+    </distributionManagement>
 </project>
