@@ -1,9 +1,6 @@
 machine:
   java:
     version: openjdk8
-compile:
-  override:
-    - ./mvnw -Ppre-release
 test:
   post:
     - mkdir -p "$CIRCLE_TEST_REPORTS/junit"
