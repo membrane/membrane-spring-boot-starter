@@ -8,6 +8,7 @@ test:
     - bash <(curl -s https://codecov.io/bash)
 deployment:
   pre-release:
+    branch: master
     commands:
       - >
           mvn
