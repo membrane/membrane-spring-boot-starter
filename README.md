@@ -4,6 +4,7 @@
 [![Dependency Status](https://www.versioneye.com/user/projects/59147f67e1638f00500b4509/badge.svg?style=flat)](https://www.versioneye.com/user/projects/59147f67e1638f00500b4509)
 [![codecov](https://codecov.io/gh/membrane/membrane-spring-boot-starter/branch/master/graph/badge.svg)](https://codecov.io/gh/membrane/membrane-spring-boot-starter)
 [![Hex.pm](https://img.shields.io/hexpm/l/plug.svg)](https://raw.githubusercontent.com/membrane/membrane-spring-boot-starter/master/LICENSE)
+[![Release](https://jitpack.io/v/User/Repo.svg)](https://jitpack.io/membrane/membrane-spring-boot-starter)
 
 A Spring Boot Starter for [Membrane Service Proxy](https://github.com/membrane/service-proxy).
 
