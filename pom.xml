@@ -29,6 +29,10 @@
         </license>
     </licenses>
 
+    <scm>
+        <developerConnection>scm:git:https://github.com/membrane/membrane-spring-boot-starter</developerConnection>
+    </scm>
+
     <repositories>
         <repository>
             <id>jitpack.io</id>
