@@ -9,10 +9,12 @@ test:
 deployment:
   pre-release:
     commands:
-      - > mvn build-helper:parse-version
-              versions:set -DgenerateBackupPoms=false -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\${parsedVersion.incrementalVersion}-${CIRCLE_BUILD_NUM}
-              scm:checkin -Dmessage='Update pre-release version [ci skip]'
-              scm:tag -Dtag='v${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion}-${CIRCLE_BUILD_NUM}' -Dmessage='Pre-release version ${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion}-${CIRCLE_BUILD_NUM}'
+      - >
+          mvn
+          build-helper:parse-version
+          versions:set -DgenerateBackupPoms=false -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\${parsedVersion.incrementalVersion}-${CIRCLE_BUILD_NUM}
+          scm:checkin -Dmessage='Update pre-release version [ci skip]'
+          scm:tag -Dtag='v${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion}-${CIRCLE_BUILD_NUM}' -Dmessage='Pre-release version ${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion}-${CIRCLE_BUILD_NUM}'
   release:
     tag: /v(?:[0-9]+\.){2}[0-9]+/
     commands:
