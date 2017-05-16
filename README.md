@@ -8,11 +8,6 @@
 
 A Spring Boot Starter for [Membrane Service Proxy](https://github.com/membrane/service-proxy).
 
-## Features
-
-* seamless integration with Spring Boot
-* typesafe Java 8 DSL for Service Proxy configuration
-
 ## Example
 
 ```java
@@ -21,10 +16,12 @@ A Spring Boot Starter for [Membrane Service Proxy](https://github.com/membrane/s
 public class Application {
     @Bean
     public ProxiesConfiguration proxies() {
-        return proxies -> proxies
-            .serviceProxy(serviceProxy -> serviceProxy
-                .matches(matcher -> matcher.pathPrefix("/restnames/"))
-                .target(target -> target.host("www.thomas-bayer.com")));
+        return p -> p
+            .serviceProxy(s -> s
+                .matches(m -> m.pathPrefix("/p8.de/"))
+                .interceptors(i -> i
+                    .log())
+                .target(t -> t.host("www.predic8.de")));
     }
 
     public static void main(String[] args) {
@@ -32,3 +29,11 @@ public class Application {
     }
 }
 ```
+
+## Features
+
+* seamless integration with Spring Boot
+* typesafe Java 8 DSL for Service Proxy configuration
+* extandable through plugins
+
+## Getting started
