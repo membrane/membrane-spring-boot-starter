@@ -2,7 +2,6 @@ package com.predic8.membrane.starter.dsl;
 
 import com.predic8.membrane.core.config.Path;
 import com.predic8.membrane.core.rules.ServiceProxy;
-import jdk.internal.org.objectweb.asm.tree.MethodInsnNode;
 
 public class MatcherSpecification {
     private final ServiceProxy serviceProxy;
