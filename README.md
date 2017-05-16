@@ -18,7 +18,7 @@ public class Application {
     public ProxiesConfiguration proxies() {
         return p -> p
             .serviceProxy(s -> s
-                .matches(m -> m.prefix("/jokes/"))
+                .matches(m -> m.pathPrefix("/jokes/"))
                 .interceptors(i -> i.log())
                 .target(t -> t.host("api.icndb.com")));
     }
