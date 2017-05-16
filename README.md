@@ -65,4 +65,4 @@ dependencies {
 
 ## Acknowledgements
 
-Thanks @snicoll for pointing out errors in the autoconfiguration and adding the project to Spring Boot's list of [community contributed starters](https://github.com/spring-projects/spring-boot/tree/master/spring-boot-starters)!
+Thanks @snicoll for pointing out errors in the auto-configuration and adding the project to Spring Boot's list of [community contributed starters](https://github.com/spring-projects/spring-boot/tree/master/spring-boot-starters)!
