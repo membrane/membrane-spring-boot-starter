@@ -54,7 +54,6 @@ public class Application {
 
 ```groovy
 repositories {
-    // 
     maven { url 'https://jitpack.io' }
 }
 
