@@ -29,6 +29,10 @@ public class Application {
 }
 ```
 
+```sh
+$ curl http://localhost:8080/jokes/random
+```
+
 ## Installation
 
 ### Maven
