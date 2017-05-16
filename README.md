@@ -33,6 +33,6 @@ public class Application {
 
 * seamless integration with Spring Boot
 * typesafe Java 8 DSL for Service Proxy configuration
-* extandable through plugins
+* extendable through plugins
 
 ## Getting started
