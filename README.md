@@ -11,20 +11,16 @@ A Spring Boot Starter for [Membrane Service Proxy](https://github.com/membrane/s
 ## Usage
 
 ```java
-// autoconfigures Membrane Service Proxy
 @EnableMembrane
 @SpringBootApplication
 public class Application {
-    // service proxy configurations are defined as a Java 8 lambda expression
     @Bean
     public ProxiesConfiguration proxies() {
         return p -> p
             .serviceProxy(s -> s
-                // match all requests starting with `/api/`
-                .matches(m -> m.pathPrefix("/api/"))
-                // log both request and response headers
+                .matches(m -> m.pathPrefix("/jokes/"))
                 .interceptors(i -> i.log())
-                .target(t -> t.host("swapi.co")));
+                .target(t -> t.host("api.icndb.com")));
     }
 
     public static void main(String[] args) {
@@ -43,7 +39,35 @@ public class Application {
 
 ### Maven
 
+```xml
+<repositories>
+    <repository>
+	    <id>jitpack.io</id>
+		<url>https://jitpack.io</url>
+    </repository>
+</repositories>
+
+<dependencies>
+    <dependency>
+        <groupId>com.github.membrane</groupId>
+        <artifactId>membrane-spring-boot-starter</artifactId>
+        <version>0.1.0</version>
+    </dependency>
+</dependencies>
+```
+
 ### Gradle
+
+```groovy
+repositories {
+    // 
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+    compile 'com.github.membrane:membrane-spring-boot-starter:0.1.0'
+}
+```
 
 ## Acknowledgements
 
