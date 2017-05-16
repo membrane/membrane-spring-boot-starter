@@ -1,7 +1,6 @@
 package com.predic8.membrane.starter.dsl.interceptors;
 
 import com.predic8.membrane.core.interceptor.rewrite.RewriteInterceptor.Mapping;
-import com.predic8.membrane.starter.dsl.interceptors.RewriterSpecification;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

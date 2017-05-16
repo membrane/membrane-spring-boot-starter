@@ -2,13 +2,11 @@ package com.predic8.membrane.starter.dsl;
 
 import com.predic8.membrane.core.config.Path;
 import com.predic8.membrane.core.rules.ServiceProxy;
-import org.assertj.core.api.Condition;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.tuple;
 
 
 @DisplayName("A MatcherSpecification")
