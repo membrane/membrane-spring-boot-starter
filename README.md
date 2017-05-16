@@ -68,4 +68,4 @@ dependencies {
 
 ## Acknowledgements
 
-Thanks [@snicoll](https://github.com/snicoll) for pointing out errors in the auto-configuration!
+Thanks [@snicoll](https://github.com/snicoll) for pointing out flaws in the auto-configuration!
