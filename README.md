@@ -18,7 +18,7 @@ public class Application {
     public ProxiesConfiguration proxies() {
         return p -> p
             .serviceProxy(s -> s
-                .matches(m -> m.pathPrefix("/jokes/"))
+                .matches(m -> m.prefix("/jokes/"))
                 .interceptors(i -> i.log())
                 .target(t -> t.host("api.icndb.com")));
     }
@@ -68,4 +68,4 @@ dependencies {
 
 ## Acknowledgements
 
-Thanks [@snicoll](https://github.com/snicoll) for pointing out errors in the auto-configuration!
+Thanks [@snicoll](https://github.com/snicoll) for pointing out flaws in the auto-configuration!
