@@ -19,8 +19,7 @@ public class Application {
         return p -> p
             .serviceProxy(s -> s
                 .matches(m -> m.pathPrefix("/p8.de/"))
-                .interceptors(i -> i
-                    .log())
+                .interceptors(InterceptorsSpecification::log)
                 .target(t -> t.host("www.predic8.de")));
     }
 
