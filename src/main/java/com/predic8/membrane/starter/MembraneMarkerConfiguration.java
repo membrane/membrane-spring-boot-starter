@@ -10,6 +10,6 @@ public class MembraneMarkerConfiguration {
         return new Marker();
     }
 
-    class Marker {
+    static class Marker {
     }
 }

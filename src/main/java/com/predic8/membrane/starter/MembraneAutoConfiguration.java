@@ -1,5 +1,6 @@
 package com.predic8.membrane.starter;
 
+import com.predic8.membrane.starter.MembraneMarkerConfiguration.Marker;
 import com.predic8.membrane.starter.controller.MembraneController;
 import com.predic8.membrane.starter.dsl.ProxiesSpecification;
 import com.predic8.membrane.starter.mapping.PathHandlerMapping;
@@ -30,7 +31,7 @@ import static java.util.stream.Collectors.partitioningBy;
 import static java.util.stream.Collectors.toList;
 
 @Configuration
-@ConditionalOnBean(MembraneMarkerConfiguration.Marker.class)
+@ConditionalOnBean(Marker.class)
 public class MembraneAutoConfiguration {
     @Bean
     @ConditionalOnMissingBean
