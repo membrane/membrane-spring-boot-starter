@@ -33,7 +33,7 @@ public class MatcherSpecificationTests {
     public void testSetPathPrefix() {
         matcherSpecification.pathPrefix("/api/");
 
-        assertThat(serviceProxy.getPath()).isEqualToComparingFieldByField(new Path(false, "/api"));
+        assertThat(serviceProxy.getPath()).isEqualToComparingFieldByField(new Path(false, "/api/"));
     }
 
     @Test
