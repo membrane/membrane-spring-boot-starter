@@ -1,7 +1,6 @@
 package com.predic8.membrane.starter.dsl.interceptors;
 
 import com.predic8.membrane.core.interceptor.LogInterceptor;
-import com.predic8.membrane.starter.dsl.interceptors.LogSpecification;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
