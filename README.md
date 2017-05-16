@@ -8,7 +8,7 @@
 
 A Spring Boot Starter for [Membrane Service Proxy](https://github.com/membrane/service-proxy).
 
-## Example
+## Usage
 
 ```java
 @EnableMembrane
@@ -35,4 +35,12 @@ public class Application {
 * typesafe Java 8 DSL for Service Proxy configuration
 * extendable through plugins
 
-## Getting started
+## Installation
+
+### Maven
+
+### Gradle
+
+## Acknowledgements
+
+Thanks @snicoll for pointing out errors in the autoconfiguration and adding the project to Spring Boot's list of [community contributed starters](https://github.com/spring-projects/spring-boot/tree/master/spring-boot-starters)!
