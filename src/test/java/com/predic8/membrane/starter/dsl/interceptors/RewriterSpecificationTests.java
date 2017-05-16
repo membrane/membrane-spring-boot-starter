@@ -12,7 +12,6 @@ import static org.assertj.core.api.Assertions.tuple;
 
 @DisplayName("A RewriterSpecification")
 class RewriterSpecificationTests {
-
     @Test
     @DisplayName("should add a mapping to the list of rewrite interceptor mappings")
     void testMap() {

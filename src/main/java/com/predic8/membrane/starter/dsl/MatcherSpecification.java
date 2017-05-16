@@ -16,13 +16,13 @@ public class MatcherSpecification {
         return this;
     }
 
-    public MatcherSpecification pathPrefix(String path) {
+    public MatcherSpecification prefix(String path) {
         serviceProxy.setPath(new Path(false, path));
 
         return this;
     }
 
-    public MatcherSpecification pathRegex(String pathRegex) {
+    public MatcherSpecification regex(String pathRegex) {
         serviceProxy.setPath(new Path(true, pathRegex));
 
         return this;

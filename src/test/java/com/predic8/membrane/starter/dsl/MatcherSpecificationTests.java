@@ -30,16 +30,16 @@ public class MatcherSpecificationTests {
 
     @Test
     @DisplayName("should set the path prefix on the service proxy")
-    public void testSetPathPrefix() {
-        matcherSpecification.pathPrefix("/api/");
+    public void testSetPrefix() {
+        matcherSpecification.prefix("/api/");
 
         assertThat(serviceProxy.getPath()).isEqualToComparingFieldByField(new Path(false, "/api/"));
     }
 
     @Test
     @DisplayName("should set the path regex on the service proxy")
-    public void testSetPathRegex() {
-        matcherSpecification.pathRegex("^/api/.*$");
+    public void testSetRegex() {
+        matcherSpecification.regex("^/api/.*$");
 
         assertThat(serviceProxy.getPath()).isEqualToComparingFieldByField(new Path(true, "^/api/.*$"));
     }
