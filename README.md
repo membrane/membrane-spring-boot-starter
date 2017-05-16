@@ -29,12 +29,6 @@ public class Application {
 }
 ```
 
-## Features
-
-* seamless integration with Spring Boot
-* typesafe Java 8 DSL for Service Proxy configuration
-* extendable through plugins
-
 ## Installation
 
 ### Maven
@@ -42,8 +36,8 @@ public class Application {
 ```xml
 <repositories>
     <repository>
-	    <id>jitpack.io</id>
-		<url>https://jitpack.io</url>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
     </repository>
 </repositories>
 
