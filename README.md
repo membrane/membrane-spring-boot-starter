@@ -42,7 +42,17 @@ $ curl http://localhost:8080/jokes/497
 The output should look similar to this
 
 ```json
-{ "type": "success", "value": { "id": 497, "joke": "If Chuck Norris writes code with bugs, the bugs fix themselves.", "categories": ["nerdy"] } }
+{
+    "type": "success",		
+        "value": {  		
+            "id": 497,		
+            "joke": "If Chuck Norris writes code with bugs, the bugs fix themselves.",		
+            "categories": [		
+                "nerdy"		
+            ]		
+        }
+    }		
+}
 ```
 
 ## Installation
