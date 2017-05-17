@@ -23,7 +23,6 @@ public class Application {
                 .matches(m -> 
                     m.method("GET") 
                      .pathPrefix("/jokes/"))
-                .interceptors(i -> i.log())
                 .target(t -> t.host("api.icndb.com")));
     }
 
