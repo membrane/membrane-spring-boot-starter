@@ -49,8 +49,8 @@ public class MembraneAutoConfiguration {
         return transport;
     }
 
-    @ConditionalOnMissingBean
     @Bean
+    @ConditionalOnMissingBean
     public ProxiesConfiguration proxies() {
         return p -> {
         };
