@@ -33,7 +33,7 @@ public class Application {
 }
 ```
 
-Test the configuration by issuing a GET request to http://localhost:8080/jokes/497
+Test the configuration by issuing a `GET` request to http://localhost:8080/jokes/497
 
 ```sh
 $ curl http://localhost:8080/jokes/497
