@@ -39,7 +39,7 @@ Test the configuration by issuing a GET request to http://localhost:8080/jokes/4
 $ curl http://localhost:8080/jokes/497
 ```
 
-The output should look similar to this
+The response should look similar to this
 
 ```json
 {
