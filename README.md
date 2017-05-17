@@ -21,8 +21,8 @@ public class Application {
         return p -> p
             .serviceProxy(s -> s
                 .matches(m -> 
-                    m.pathPrefix("/jokes/")
-                     .method("GET"))
+                    m.method("GET") 
+                     .pathPrefix("/jokes/"))
                 .interceptors(i -> i.log())
                 .target(t -> t.host("api.icndb.com")));
     }
