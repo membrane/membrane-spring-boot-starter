@@ -8,7 +8,9 @@
 
 A Spring Boot Starter for [Membrane Service Proxy](https://github.com/membrane/service-proxy).
 
-## Usage
+## Example
+
+Forward all `GET` requests whose path starts with `/jokes/` to api.icndb.com ([The Internet Chuck Norris Database API](http://www.icndb.com/api/)) and log request and response headers.
 
 ```java
 @EnableMembrane
@@ -18,7 +20,9 @@ public class Application {
     public ProxiesConfiguration proxies() {
         return p -> p
             .serviceProxy(s -> s
-                .matches(m -> m.pathPrefix("/jokes/"))
+                .matches(m -> 
+                    m.method("GET") 
+                     .pathPrefix("/jokes/"))
                 .interceptors(i -> i.log())
                 .target(t -> t.host("api.icndb.com")));
     }
@@ -29,8 +33,26 @@ public class Application {
 }
 ```
 
+Test the configuration by issuing a `GET` request to http://localhost:8080/jokes/497
+
 ```sh
-$ curl http://localhost:8080/jokes/random
+$ curl http://localhost:8080/jokes/497
+```
+
+The output should look similar to this
+
+```json
+{
+    "type": "success",		
+        "value": {  		
+            "id": 497,		
+            "joke": "If Chuck Norris writes code with bugs, the bugs fix themselves.",		
+            "categories": [		
+                "nerdy"		
+            ]		
+        }
+    }		
+}
 ```
 
 ## Installation
