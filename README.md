@@ -16,12 +16,13 @@ Forward all `GET` requests whose path starts with `/jokes/` to api.icndb.com ([T
 @EnableMembrane
 @SpringBootApplication
 public class Application {
+
     @Bean
     public ProxiesConfiguration proxies() {
         return p -> p
             .serviceProxy(s -> s
-                .matches(m -> 
-                    m.method("GET") 
+                .matches(m -> m
+                     .method("GET") 
                      .pathPrefix("/jokes/"))
                 .target(t -> t.host("api.icndb.com")));
     }
