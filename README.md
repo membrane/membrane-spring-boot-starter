@@ -10,18 +10,19 @@ A Spring Boot Starter for [Membrane Service Proxy](https://github.com/membrane/s
 
 ## Example
 
-Forward all `GET` requests whose path starts with `/jokes/` to api.icndb.com ([The Internet Chuck Norris Database API](http://www.icndb.com/api/)).
+Forward all `GET` requests starting with `/jokes/` to [The Internet Chuck Norris Database API](http://www.icndb.com/api/).
 
 ```java
 @EnableMembrane
 @SpringBootApplication
 public class Application {
+
     @Bean
     public ProxiesConfiguration proxies() {
         return p -> p
             .serviceProxy(s -> s
-                .matches(m -> 
-                    m.method("GET") 
+                .matches(m -> m
+                     .method("GET") 
                      .pathPrefix("/jokes/"))
                 .target(t -> t.host("api.icndb.com")));
     }
@@ -32,13 +33,13 @@ public class Application {
 }
 ```
 
-Test the configuration by issuing a `GET` request to http://localhost:8080/jokes/497
+Test the configuration by sending a `GET` request to http://localhost:8080/jokes/497.
 
 ```sh
 $ curl http://localhost:8080/jokes/497
 ```
 
-The output should look similar to this
+The output should look similar to this.
 
 ```json
 {
@@ -69,7 +70,7 @@ The output should look similar to this
     <dependency>
         <groupId>com.github.membrane</groupId>
         <artifactId>membrane-spring-boot-starter</artifactId>
-        <version>0.1.0</version>
+        <version>0.5.0</version>
     </dependency>
 </dependencies>
 ```
