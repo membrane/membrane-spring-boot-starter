@@ -51,18 +51,18 @@ public class MembraneAutoConfiguration {
 
     @Bean
     @ConditionalOnMissingBean
-    public ProxiesConfiguration proxies() {
+    public Proxies proxies() {
         return p -> {
         };
     }
 
     @Bean
-    public Router router(Transport transport, ProxiesConfiguration proxiesConfiguration) throws IOException {
+    public Router router(Transport transport, Proxies proxies) throws IOException {
         Router router = new Router();
         router.setTransport(transport);
 
         List<ServiceProxy> serviceProxies = new ArrayList<>();
-        proxiesConfiguration.consume(new ProxiesSpecification(serviceProxies));
+        proxies.consume(new ProxiesSpecification(serviceProxies));
 
         for (ServiceProxy serviceProxy : serviceProxies) {
             router.add(serviceProxy);
