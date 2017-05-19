@@ -88,7 +88,7 @@ public class MembraneAutoConfiguration {
 
     @Bean
     public AbstractUrlHandlerMapping membranePrefixHandlerMapping(PathResolver pathResolver, MembraneController membraneController) {
-        PathHandlerMapping membranePrefixHandlerMapping = new PathHandlerMapping(pathResolver.prefixPaths(), (url, path) -> url.startsWith(path), membraneController);
+        PathHandlerMapping membranePrefixHandlerMapping = new PathHandlerMapping(pathResolver.prefixPaths(), String::startsWith, membraneController);
         membranePrefixHandlerMapping.setOrder(-200);
 
         return membranePrefixHandlerMapping;
@@ -96,7 +96,7 @@ public class MembraneAutoConfiguration {
 
     @Bean
     public AbstractUrlHandlerMapping membraneRegexHandlerMapping(PathResolver pathResolver, MembraneController membraneController) {
-        PathHandlerMapping membraneRegexHandlerMapping = new PathHandlerMapping(pathResolver.regexPaths(), (url, path) -> url.matches(path), membraneController);
+        PathHandlerMapping membraneRegexHandlerMapping = new PathHandlerMapping(pathResolver.regexPaths(), String::matches, membraneController);
         membraneRegexHandlerMapping.setOrder(-200);
 
         return membraneRegexHandlerMapping;

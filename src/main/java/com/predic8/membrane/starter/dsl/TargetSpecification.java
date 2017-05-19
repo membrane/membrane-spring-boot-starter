@@ -20,4 +20,10 @@ public class TargetSpecification {
 
         return this;
     }
+
+    public TargetSpecification url(String url) {
+        target.setUrl(url);
+
+        return this;
+    }
 }

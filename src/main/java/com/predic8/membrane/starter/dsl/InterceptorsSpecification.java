@@ -1,13 +1,15 @@
 package com.predic8.membrane.starter.dsl;
 
-import com.predic8.membrane.starter.dsl.interceptors.LogSpecification;
-import com.predic8.membrane.starter.dsl.interceptors.RewriterSpecification;
-import com.predic8.membrane.starter.interceptor.ExchangeInterceptor;
 import com.predic8.membrane.core.exchange.Exchange;
 import com.predic8.membrane.core.interceptor.Interceptor;
 import com.predic8.membrane.core.interceptor.LogInterceptor;
 import com.predic8.membrane.core.interceptor.Outcome;
+import com.predic8.membrane.core.interceptor.flow.RequestInterceptor;
+import com.predic8.membrane.core.interceptor.flow.ResponseInterceptor;
 import com.predic8.membrane.core.interceptor.rewrite.RewriteInterceptor;
+import com.predic8.membrane.starter.dsl.interceptors.LogSpecification;
+import com.predic8.membrane.starter.dsl.interceptors.RewriterSpecification;
+import com.predic8.membrane.starter.interceptor.ExchangeInterceptor;
 
 import java.util.List;
 import java.util.function.BiFunction;
