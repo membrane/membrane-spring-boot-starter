@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpMethod;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.http.HttpMethod.GET;
 
 
 @DisplayName("A MatcherSpecification")
@@ -32,7 +33,7 @@ public class MatcherSpecificationTests {
     @Test
     @DisplayName("should set the method on the service proxy using an enum value")
     public void testSetMethodTypeSafe() {
-        matcherSpecification.method(HttpMethod.GET);
+        matcherSpecification.method(GET);
 
         assertThat(serviceProxy.getMethod()).isEqualTo("GET");
     }
