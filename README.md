@@ -8,7 +8,7 @@
 
 A Spring Boot Starter for [Membrane Service Proxy](https://github.com/membrane/service-proxy).
 
-## Example
+## Usage
 
 Forward all `GET` requests starting with `/jokes/` to [The Internet Chuck Norris Database API](http://www.icndb.com/api/).
 
