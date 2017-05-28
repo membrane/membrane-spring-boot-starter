@@ -18,7 +18,7 @@ Forward all `GET` requests starting with `/jokes/` to [The Internet Chuck Norris
 public class Application {
 
     @Bean
-    public ProxiesConfiguration proxies() {
+    public Proxies proxies() {
         return p -> p
             .serviceProxy(s -> s
                 .matches(m -> m
