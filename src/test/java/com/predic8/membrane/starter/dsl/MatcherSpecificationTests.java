@@ -5,6 +5,7 @@ import com.predic8.membrane.core.rules.ServiceProxy;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.http.HttpMethod;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -24,6 +25,14 @@ public class MatcherSpecificationTests {
     @DisplayName("should set the method on the service proxy")
     public void testSetMethod() {
         matcherSpecification.method("GET");
+
+        assertThat(serviceProxy.getMethod()).isEqualTo("GET");
+    }
+
+    @Test
+    @DisplayName("should set the method on the service proxy using an enum value")
+    public void testSetMethodTypeSafe() {
+        matcherSpecification.method(HttpMethod.GET);
 
         assertThat(serviceProxy.getMethod()).isEqualTo("GET");
     }
