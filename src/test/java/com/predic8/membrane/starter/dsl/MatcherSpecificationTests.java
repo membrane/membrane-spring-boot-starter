@@ -32,7 +32,7 @@ public class MatcherSpecificationTests {
 
     @Test
     @DisplayName("should set the method on the service proxy using an enum value")
-    public void testSetMethodTypeSafe() {
+    public void testSetMethodUsingEnum() {
         matcherSpecification.method(GET);
 
         assertThat(serviceProxy.getMethod()).isEqualTo("GET");
