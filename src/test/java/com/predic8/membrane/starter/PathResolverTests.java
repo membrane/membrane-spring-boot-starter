@@ -9,16 +9,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("A PathResolver")
 class PathResolverTests {
-    @DisplayName("should return the list of prefix paths")
     @Test
+    @DisplayName("should return the list of prefix paths")
     void prefixPaths() {
         PathResolver pathResolver = new PathResolver(singletonList("/api/"), emptyList());
 
         assertThat(pathResolver.prefixPaths()).containsOnly("/api/");
     }
 
-    @DisplayName("should return the list of regex paths")
     @Test
+    @DisplayName("should return the list of regex paths")
     void regexPaths() {
         PathResolver pathResolver = new PathResolver(emptyList(), singletonList("^/api/.*$"));
 

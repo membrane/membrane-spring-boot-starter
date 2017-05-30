@@ -9,19 +9,19 @@ import static com.predic8.membrane.core.interceptor.LogInterceptor.Level.WARN;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("A LogSpecification")
-public class LogSpecificationTests {
+class LogSpecificationTests {
     private LogInterceptor logInterceptor;
     private LogSpecification logSpecification;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         logInterceptor = new LogInterceptor();
         logSpecification = new LogSpecification(logInterceptor);
     }
 
     @Test
     @DisplayName("should set the log level on the log interceptor")
-    public void testSetLevel() {
+    void testSetLevel() {
         logSpecification.level(WARN);
 
         assertThat(logInterceptor.getLevel()).isSameAs(WARN);
@@ -29,7 +29,7 @@ public class LogSpecificationTests {
 
     @Test
     @DisplayName("should set the category on the log interceptor")
-    public void testSetCategory() {
+    void testSetCategory() {
         logSpecification.category("logSpecification");
 
         assertThat(logInterceptor.getCategory()).isEqualTo("logSpecification");

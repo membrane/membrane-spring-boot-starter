@@ -2,6 +2,7 @@ package com.predic8.membrane.starter.dsl;
 
 import com.predic8.membrane.core.exchange.Exchange;
 import com.predic8.membrane.core.interceptor.Interceptor;
+import com.predic8.membrane.core.interceptor.Interceptor.Flow;
 import com.predic8.membrane.core.interceptor.LogInterceptor;
 import com.predic8.membrane.core.interceptor.Outcome;
 import com.predic8.membrane.core.interceptor.rewrite.RewriteInterceptor;
@@ -14,14 +15,14 @@ import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-public class NonFlowInterceptorsSpecification {
+public class TopLevelInterceptorsSpecification {
     protected List<Interceptor> interceptors;
 
-    public NonFlowInterceptorsSpecification(List<Interceptor> interceptors) {
+    public TopLevelInterceptorsSpecification(List<Interceptor> interceptors) {
         this.interceptors = interceptors;
     }
 
-    public NonFlowInterceptorsSpecification log(Consumer<LogSpecification> c) {
+    public TopLevelInterceptorsSpecification log(Consumer<LogSpecification> c) {
         LogInterceptor logInterceptor = new LogInterceptor();
         c.accept(new LogSpecification(logInterceptor));
 
@@ -30,12 +31,12 @@ public class NonFlowInterceptorsSpecification {
         return this;
     }
 
-    public NonFlowInterceptorsSpecification log() {
+    public TopLevelInterceptorsSpecification log() {
         return log(l -> {
         });
     }
 
-    public NonFlowInterceptorsSpecification rewriter(Consumer<RewriterSpecification> c) {
+    public TopLevelInterceptorsSpecification rewriter(Consumer<RewriterSpecification> c) {
         RewriteInterceptor rewriteInterceptor = new RewriteInterceptor();
         c.accept(new RewriterSpecification(rewriteInterceptor.getMappings()));
 
@@ -44,17 +45,17 @@ public class NonFlowInterceptorsSpecification {
         return this;
     }
 
-    public NonFlowInterceptorsSpecification interceptor(Interceptor interceptor) {
+    public TopLevelInterceptorsSpecification interceptor(Interceptor interceptor) {
         interceptors.add(interceptor);
 
         return this;
     }
 
-    public NonFlowInterceptorsSpecification exchange(Function<Exchange, Outcome> c) {
+    public TopLevelInterceptorsSpecification exchange(Function<Exchange, Outcome> c) {
         return exchange((exchange, flow) -> c.apply(exchange));
     }
 
-    public NonFlowInterceptorsSpecification exchange(BiFunction<Exchange, Interceptor.Flow, Outcome> c) {
+    public TopLevelInterceptorsSpecification exchange(BiFunction<Exchange, Flow, Outcome> c) {
         ExchangeInterceptor exchangeInterceptor = new ExchangeInterceptor(c);
 
         interceptors.add(exchangeInterceptor);

@@ -21,8 +21,8 @@ public class MatcherSpecification {
         return method(method.toString());
     }
 
-    public MatcherSpecification pathPrefix(String path) {
-        serviceProxy.setPath(new Path(false, path));
+    public MatcherSpecification pathPrefix(String pathPrefix) {
+        serviceProxy.setPath(new Path(false, pathPrefix));
 
         return this;
     }

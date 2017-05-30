@@ -18,12 +18,10 @@ public class ServletTransport extends Transport {
 
     @Override
     public void openPort(String ip, int port, SSLProvider sslProvider) throws IOException {
-        // do nothing
     }
 
     @Override
     public void closeAll() throws IOException {
-        // do nothing
     }
 
     @Override

@@ -5,26 +5,25 @@ import com.predic8.membrane.core.rules.ServiceProxy;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.springframework.http.HttpMethod;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.http.HttpMethod.GET;
 
 
 @DisplayName("A MatcherSpecification")
-public class MatcherSpecificationTests {
+class MatcherSpecificationTests {
     private ServiceProxy serviceProxy;
     private MatcherSpecification matcherSpecification;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         serviceProxy = new ServiceProxy();
         matcherSpecification = new MatcherSpecification(serviceProxy);
     }
 
     @Test
     @DisplayName("should set the method on the service proxy")
-    public void testSetMethod() {
+    void testSetMethod() {
         matcherSpecification.method("GET");
 
         assertThat(serviceProxy.getMethod()).isEqualTo("GET");
@@ -32,7 +31,7 @@ public class MatcherSpecificationTests {
 
     @Test
     @DisplayName("should set the method on the service proxy using an enum value")
-    public void testSetMethodUsingEnum() {
+    void testSetMethodUsingEnum() {
         matcherSpecification.method(GET);
 
         assertThat(serviceProxy.getMethod()).isEqualTo("GET");
@@ -40,7 +39,7 @@ public class MatcherSpecificationTests {
 
     @Test
     @DisplayName("should set the path pathPrefix on the service proxy")
-    public void testSetPathPrefix() {
+    void testSetPathPrefix() {
         matcherSpecification.pathPrefix("/api/");
 
         assertThat(serviceProxy.getPath()).isEqualToComparingFieldByField(new Path(false, "/api/"));
@@ -48,7 +47,7 @@ public class MatcherSpecificationTests {
 
     @Test
     @DisplayName("should set the path pathRegex on the service proxy")
-    public void testSetPathRegex() {
+    void testSetPathRegex() {
         matcherSpecification.pathRegex("^/api/.*$");
 
         assertThat(serviceProxy.getPath()).isEqualToComparingFieldByField(new Path(true, "^/api/.*$"));

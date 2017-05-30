@@ -132,8 +132,6 @@ class HttpServletHandler extends AbstractHttpHandler {
     @Override
     public void shutdownInput() throws IOException {
         request.getInputStream().close();
-        // nothing more we can do, since the servlet API does not give
-        // us access to the TCP API
     }
 
     @Override
