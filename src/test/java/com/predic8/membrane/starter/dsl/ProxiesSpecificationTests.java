@@ -9,14 +9,14 @@ import java.util.ArrayList;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("A ProxiesSpecification")
-public class ProxiesSpecificationTests {
+class ProxiesSpecificationTests {
     @Test
-    public void testAddServiceProxy() {
+    @DisplayName("should add a service proxy")
+    void testAddServiceProxy() {
         ArrayList<ServiceProxy> serviceProxies = new ArrayList<>();
         ProxiesSpecification proxiesSpecification = new ProxiesSpecification(serviceProxies);
 
-        proxiesSpecification.serviceProxy(s -> s
-            .target(t -> t.host("localhost")));
+        proxiesSpecification.serviceProxy(s -> {});
 
         assertThat(serviceProxies).hasSize(1);
     }
