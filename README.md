@@ -22,7 +22,7 @@ public class Application {
         return p -> p
             .serviceProxy(s -> s
                 .matches(m -> m
-                     .method("GET") 
+                     .method(GET) 
                      .pathPrefix("/jokes/"))
                 .target(t -> t.host("api.icndb.com")));
     }
