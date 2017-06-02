@@ -11,14 +11,10 @@ public class MatcherSpecification {
         this.serviceProxy = serviceProxy;
     }
 
-    public MatcherSpecification method(String method) {
-        serviceProxy.setMethod(method);
+    public MatcherSpecification method(HttpMethod method) {
+        serviceProxy.setMethod(method.toString());
 
         return this;
-    }
-
-    public MatcherSpecification method(HttpMethod method) {
-        return method(method.toString());
     }
 
     public MatcherSpecification pathPrefix(String pathPrefix) {

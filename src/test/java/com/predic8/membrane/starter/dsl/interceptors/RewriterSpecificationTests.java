@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-import static com.predic8.membrane.core.interceptor.rewrite.RewriteInterceptor.Type.REDIRECT_TEMPORARY;
+import static com.predic8.membrane.core.interceptor.rewrite.RewriteInterceptor.Type.REWRITE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.tuple;
 
@@ -17,10 +17,10 @@ class RewriterSpecificationTests {
     void testMap() {
         ArrayList<Mapping> mappings = new ArrayList<>();
         RewriterSpecification rewriterSpecification = new RewriterSpecification(mappings);
-        rewriterSpecification.map("http://www.predic8.de", "http://www.p8.de");
+        rewriterSpecification.map("/api(.*)", "$1");
 
         assertThat(mappings).hasSize(1)
                             .extracting("from", "to", "do")
-                            .contains(tuple("http://www.predic8.de", "http://www.p8.de", REDIRECT_TEMPORARY));
+                            .contains(tuple("/api(.*)", "$1", REWRITE));
     }
 }

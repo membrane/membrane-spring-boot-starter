@@ -21,16 +21,8 @@ class MatcherSpecificationTests {
     }
 
     @Test
-    @DisplayName("should set the method on the service proxy")
-    void testSetMethod() {
-        matcherSpecification.method("GET");
-
-        assertThat(serviceProxy.getMethod()).isEqualTo("GET");
-    }
-
-    @Test
     @DisplayName("should set the method on the service proxy using an enum value")
-    void testSetMethodUsingEnum() {
+    void testSetMethod() {
         matcherSpecification.method(GET);
 
         assertThat(serviceProxy.getMethod()).isEqualTo("GET");
