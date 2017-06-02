@@ -10,7 +10,7 @@ A Spring Boot Starter for [Membrane Service Proxy](https://github.com/membrane/s
 
 ## Usage
 
-Forward all `GET` requests starting with `/jokes/` to [The Internet Chuck Norris Database API](http://www.icndb.com/api/).
+Forward all `GET` requests starting with `/jokes` to [The Internet Chuck Norris Database API](http://www.icndb.com/api/).
 
 ```java
 @EnableMembrane
@@ -23,7 +23,7 @@ public class Application {
             .serviceProxy(s -> s
                 .matches(m -> m
                      .method(GET) 
-                     .pathPrefix("/jokes/"))
+                     .pathPrefix("/jokes"))
                 .target(t -> t.host("api.icndb.com")));
     }
 
