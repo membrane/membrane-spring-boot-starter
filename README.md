@@ -70,7 +70,7 @@ The output should look similar to this.
     <dependency>
         <groupId>com.github.membrane</groupId>
         <artifactId>membrane-spring-boot-starter</artifactId>
-        <version>0.5.0</version>
+        <version>0.6.0</version>
     </dependency>
 </dependencies>
 ```
