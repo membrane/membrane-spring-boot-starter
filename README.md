@@ -83,7 +83,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.github.membrane:membrane-spring-boot-starter:0.1.0'
+    compile 'com.github.membrane:membrane-spring-boot-starter:0.6.0'
 }
 ```
 
