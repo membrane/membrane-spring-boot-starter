@@ -24,6 +24,7 @@ public class RewriterSpecification {
 
     private Mapping createMapping(String from, String to, Type action) {
         Mapping mapping = new Mapping();
+
         mapping.setFrom(from);
         mapping.setTo(to);
         mapping.setDo(action != null ? action : mapping.getDo());

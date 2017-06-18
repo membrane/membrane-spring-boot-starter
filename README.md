@@ -16,7 +16,6 @@ Forward all `GET` requests starting with `/jokes` to [The Internet Chuck Norris 
 @EnableMembrane
 @SpringBootApplication
 public class Application {
-
     @Bean
     public Proxies proxies() {
         return p -> p

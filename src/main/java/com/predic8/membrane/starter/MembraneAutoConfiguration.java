@@ -1,10 +1,5 @@
 package com.predic8.membrane.starter;
 
-import com.predic8.membrane.starter.MembraneMarkerConfiguration.Marker;
-import com.predic8.membrane.starter.controller.MembraneController;
-import com.predic8.membrane.starter.dsl.ProxiesSpecification;
-import com.predic8.membrane.starter.mapping.PathHandlerMapping;
-import com.predic8.membrane.starter.servlet.ServletTransport;
 import com.predic8.membrane.core.Router;
 import com.predic8.membrane.core.interceptor.DispatchingInterceptor;
 import com.predic8.membrane.core.interceptor.HTTPClientInterceptor;
@@ -15,6 +10,11 @@ import com.predic8.membrane.core.rules.Rule;
 import com.predic8.membrane.core.rules.RuleKey;
 import com.predic8.membrane.core.rules.ServiceProxy;
 import com.predic8.membrane.core.transport.Transport;
+import com.predic8.membrane.starter.MembraneMarkerConfiguration.Marker;
+import com.predic8.membrane.starter.controller.MembraneController;
+import com.predic8.membrane.starter.dsl.ProxiesSpecification;
+import com.predic8.membrane.starter.mapping.PathHandlerMapping;
+import com.predic8.membrane.starter.servlet.ServletTransport;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
@@ -76,7 +76,9 @@ public class MembraneAutoConfiguration {
 
     @Bean
     public PathResolver pathLocator(Router router) {
-        Map<Boolean, List<RuleKey>> ruleKeyByType = router.getRuleManager().getRules().stream()
+        Map<Boolean, List<RuleKey>> ruleKeyByType = router.getRuleManager()
+                                                          .getRules()
+                                                          .stream()
                                                           .map(Rule::getKey)
                                                           .collect(partitioningBy(RuleKey::isPathRegExp));
 
